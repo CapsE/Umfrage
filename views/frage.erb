@@ -1,22 +1,16 @@
-<html>
-    <head></head>
-    <body>
-        <form action="/data" method="POST">
-              <h3>Kreuzen Sie die gewünschten Zutaten an:</h3> 
+<div id="holder">
+<form action="/data" method="POST">
+    <h3>Welche Produktarten wurden beworben?</h3>
+    <h4>(Durch Komma getrennt eingeben z.B. "Zigaretten, Parfum, Hotels")</h4> 
+    <textarea style="width:500px; height:500px;"></textarea><br/>
 
-                <label for="check1">
-                  <input type="checkbox" name="zutat" value="honda" id="check1">
-                  Honda
-                </label> 
-                <label for="check2">
-                   <input type="checkbox" name="zutat" value="mercedes" id="check2">
-                   Mercedes
-                </label> 
-                <label for="check3">
-                  <input type="checkbox" name="zutat" value="lidl" id="check3">
-                  Lidl
-                </label> 
-            <input type="submit" value="Absenden" />
-        </form>
-    </body>
-</html>
+    <input class="button" type="submit" value="Absenden" />
+</form>
+</div>
+<style>
+    #holder{
+        margin-left:auto;
+        margin-right:auto;
+        width:50%;
+    }
+</style>

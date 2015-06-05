@@ -1,16 +1,2 @@
-<html>
-    <head>
-        <script language="javascript" type="text/javascript" src="jquery-1.11.3.min.js"></script>
-        
-        <style>
-            .frame{
-                width:100%;
-                height:100%;
-            }
-        </style>
-    </head>
-
-    <iframe class="frame" src="<%= @videoURL %>"></iframe><br/>
-    <a href="/video">Next</a>
-    
-</html>
+    <iframe class="frame" src="<%= @videoURL %>"></iframe><br/><br/>
+    <a class="button" href="/video/<%= @nextId %>">Next</a><p><%= session["group"] %></p>
