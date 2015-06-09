@@ -1,9 +1,16 @@
 require 'sinatra'
 
-enable :sessions
+configure do
+	enable :sessions
+
+	set :bind, '0.0.0.0'
+end
 
 hotwheelsInteractive = "https://www.youtube.com/embed/vPGhqQ9vZPM"
 hotwheels = "https://www.youtube.com/embed/peGQtWR4iys"
+
+pepsiInteractive = "https://content_s-a.akamaihd.net/player/pepsi/release/1.5/index.html?publisherID=embedded&has_view_count=false"
+pepsi = "https://www.youtube.com/embed/vn19MC0VKqg"
 
 hondaInteractive = "http://hondatheotherside.com/index.php?x=en-gb"
 hondaNormal = "https://www.youtube.com/embed/KBL05l2Epvo"
@@ -14,8 +21,17 @@ iPad = "https://www.youtube.com/embed/_gUK0Dtauvo"
 ikea = "https://www.youtube.com/embed/7Q0RCxxEag8"
 
 
-$groupA = [becks, hondaInteractive, lidl, hotwheels, iPad, ikea]
-$groupB = [becks, hondaNormal, lidl, hotwheelsInteractive, iPad, ikea]
+$groupA = [becks, hondaInteractive, lidl, pepsi, iPad, ikea]
+$groupB = [becks, hondaNormal, lidl, pepsiInteractive, iPad, ikea]
+
+$times = {}
+$user = {}
+
+before do
+    if !session["userID"]
+        session["userID"] = Time.new.to_i
+    end
+end
 
 get "/" do
     if session["done"]
@@ -56,6 +72,14 @@ get "/frage" do
    erb :frage 
 end
 
+get "/detailfragen" do
+      if session["done"]
+        redirect "/ende"
+    end
+    
+   erb :detailfragen 
+end
+
 get "/reset" do
     session["watched"] = nil
     session["group"] = nil
@@ -70,10 +94,36 @@ post "/data" do
     
     puts "POST"
     params["group"] = session["group"]
+    params["userID"] = session["userID"]
+    params["times"] = $times[session["userID"]]
+    puts params
+    $user[session["userID"]] = params
+    
+    #File.open("log.txt", 'a') { |file| file.write(params.to_s + "\n") }
+    #session["done"] = true
+    redirect "/detailfragen"
+end
+    
+post "/detailData" do
+    params["fragen"] = $user[session["userID"]]
+    
+    puts "POST 2"
     puts params
     File.open("log.txt", 'a') { |file| file.write(params.to_s + "\n") }
     session["done"] = true
     redirect "/ende"
+end
+
+post "/time" do
+    puts "POST"
+    puts params
+    puts "UserID"
+    puts session["userID"]
+    if !$times[session["userID"]]
+        $times[session["userID"]] = {params["video"] => params["time"]}
+    else
+        $times[session["userID"]][params["video"]] = params["time"]
+    end
 end
 
 get "/ende" do

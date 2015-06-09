@@ -19,8 +19,9 @@
                 text-decoration: none;
             }
         </style>
+        <script src="/jquery-1.11.3.min.js"></script>
     </head>
-    <body>
+    <body onunload="unload()">
         <%= yield %>
     </body>
 </html>

@@ -1,16 +1,46 @@
 <div id="holder">
 <form action="/data" method="POST">
-    <h3>Welche Produktarten wurden beworben?</h3>
-    <h4>(Durch Komma getrennt eingeben z.B. "Zigaretten, Parfum, Hotels")</h4> 
-    <textarea style="width:500px; height:500px;"></textarea><br/>
+    <h3>Bist du ein Mann oder eine Frau?</h3>
+    <select name="gender">
+          <option value="male">Mann</option>
+          <option value="female">Frau</option>
+    </select>
+    <br/>
+    <h3>Welche Produkte wurden in den Videos beworben?</h3>
+    <p>Bitte Produkte durch Komma getrennt eingeben. (z.B. "Pommes, Zigaretten, Eistee")</p>
+    <textarea class="tArea" name="produkte"></textarea>
+    <br/>
+    <h3>Welche Marken wurden in den Videos beworben?</h3>
+    <p>Bitte Marken durch Komma getrennt eingeben. (z.B. "McDonalds, Cinemaxx, Shell")</p>
+    <textarea class="tArea" name="marken"></textarea>
+    <br/>   
+    <h3>Hast du dir alle Videos bis zum Ende angesehen?</h3>
+    <select name="angesehen">
+      <option value="ja">Ja</option>
+      <option value="nein">Nein</option>
+    </select>
+    <br/>
+    <h3>Hattest du Probleme das interactive Video zu bedienen?</h3>
+    <select name="schwerBedienbar">
+      <option value="ja">Ja</option>
+      <option value="nein">Nein</option>
+    </select>
+    <br/> 
+    <br/>
 
     <input class="button" type="submit" value="Absenden" />
 </form>
 </div>
+
 <style>
     #holder{
         margin-left:auto;
         margin-right:auto;
         width:50%;
+    }
+    
+    .tArea{
+        width:300px;
+        height:100px;
     }
 </style>

@@ -1,2 +1,56 @@
-    <iframe class="frame" src="<%= @videoURL %>"></iframe><br/><br/>
-    <a class="button" href="/video/<%= @nextId %>">Next</a><p><%= session["group"] %></p>
+<iframe class="frame" src="<%= @videoURL %>" onload="load()"></iframe>
+
+<br/><br/>
+
+<a class="button" href="/video/<%= @nextId %>">Next</a>
+<p><%= session["group"] %></p>
+<p id="time"></p>
+
+<script>
+    var videoId = <%= @nextId %>;
+    var time = 0;
+    
+    function load(){
+        time = new Date().getTime();
+        document.getElementById("time").innerHTML = getCookie("time" + (videoId - 1).toString());
+    }
+    
+    function unload(){
+        time = (new Date().getTime() - time) / 1000;
+        send(time);
+        console.debug(time);
+    }
+        
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires="+d.toUTCString();
+        console.debug( window.location.host);
+        document.cookie = cname + "=" + cvalue + "; " + expires + ";domain=." + window.location.host.toString().split(":")[0] + ";path=/";
+    }
+        
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1);
+            if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+        }
+        return "";
+    }
+    
+    function send(time){
+        
+        $.ajax({
+          url: '/time',
+          data: {
+            time: time,
+            video: videoId
+          },
+          type: 'POST',
+          dataType: 'json',
+          success: function(data) { }
+        });
+    }
+</script>

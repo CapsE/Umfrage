@@ -1,0 +1,83 @@
+<div id="holder">
+<form action="/detailData" method="POST">
+    <h3>Welche Farben hatten die beiden Autos in der Honda Werbung?</h3>
+      <fieldset> 
+        <label for="check1">
+          <input type="checkbox" name="rot" value="rot" id="check1">
+          Rot
+        </label> 
+        <label for="check2">
+           <input type="checkbox" name="schwarz" value="schwarz" id="check2">
+           Schwarz
+        </label> 
+        <label for="check3">
+          <input type="checkbox" name="weiß" value="weiß" id="check3">
+          Weiß
+        </label> 
+        <label for="check4">
+          <input type="checkbox" name="blau" value="blau" id="check4">
+          Blau
+        </label>
+         <label for="check5">
+          <input type="checkbox" name="gelb" value="gelb" id="check5">
+          Gelb
+        </label>
+        <label for="check6">
+          <input type="checkbox" name="silber" value="silber" id="check6">
+          Silber
+        </label>
+    </fieldset> 
+    <br/>
+    <h3>Was singt die Sängerin in der Pepsiwerbung?</h3>
+    <select name="gesangText">
+          <option value="pepsiHasTest">Pepsi has the taste</option>
+          <option value="partyAllDay">We party all day</option>
+          <option value="heroes">We can be heroes</option>
+    </select>
+    <br/>
+    <h3>Welche Sorten Becks gibt es jetzt neu?</h3>
+    <fieldset> 
+        <label for="check1">
+          <input type="checkbox" name="amberLager" value="amberLager" id="check1">
+          Amber Lager
+        </label> 
+        <label for="check2">
+           <input type="checkbox" name="1873" value="1873" id="check2">
+           1873 Pils
+        </label> 
+        <label for="check3">
+          <input type="checkbox" name="1950" value="1950" id="check3">
+          1950 Pils
+        </label> 
+        <label for="check4">
+          <input type="checkbox" name="curuba" value="curuba" id="check4">
+          Curuba
+        </label>
+         <label for="check5">
+          <input type="checkbox" name="paleAle" value="paleAle" id="check5">
+          Pale Ale
+        </label>
+        <label for="check6">
+          <input type="checkbox" name="scotch" value="scotch" id="check6">
+          Scotch Ale
+        </label>
+    </fieldset> 
+    <br/>    
+    <br/>
+
+    <input class="button" type="submit" value="Absenden" />
+</form>
+</div>
+
+<style>
+    #holder{
+        margin-left:auto;
+        margin-right:auto;
+        width:50%;
+    }
+    
+    .tArea{
+        width:300px;
+        height:100px;
+    }
+</style>

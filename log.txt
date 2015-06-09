@@ -1,3 +1,1 @@
-{"mercedes"=>"on", "lidl"=>"on", "group"=>1}
-{"mercedes"=>"on", "astra"=>"on", "krombacher"=>"on", "hotwheels"=>"on", "group"=>1}
-{"group"=>1}
+{"rot"=>"rot", "wei\u00DF"=>"wei\u00DF", "gesangText"=>"pepsiHasTest", "amberLager"=>"amberLager", "1873"=>"1873", "1950"=>"1950", "fragen"=>{"gender"=>"male", "produkte"=>"ABC", "marken"=>"ABC", "angesehen"=>"ja", "schwerBedienbar"=>"nein", "group"=>0, "userID"=>1433683797, "times"=>{"2"=>"5.974", "3"=>"6.051", "4"=>"8.43", "5"=>"2.095", "6"=>"1.463"}}}
