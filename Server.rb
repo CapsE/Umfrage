@@ -23,6 +23,7 @@ ikea = "https://www.youtube.com/embed/7Q0RCxxEag8"
 
 $groupA = [becks, hondaInteractive, lidl, pepsi, iPad, ikea]
 $groupB = [becks, hondaNormal, lidl, pepsiInteractive, iPad, ikea]
+$group = false
 
 $times = {}
 $user = {}
@@ -39,7 +40,13 @@ get "/" do
     end
     
     if !session["group"]
-        session["group"] = rand(2)
+        if $group
+            session["group"] = 1
+            $group = false
+        else
+            session["group"] = 0
+            $group = true
+        end
     end
     session["watched"] = 0
     erb :index
@@ -49,6 +56,9 @@ get "/video/:id" do
     id = params[:id].to_i
     if session["done"]
         redirect "/ende"
+    end
+    if session["answer"]
+       redirect "/frage" 
     end
     
     if session["group"] == 0
@@ -65,6 +75,12 @@ get "/video/:id" do
 end
 
 get "/frage" do
+    if session["answer"]
+       if session["answer"] == 1
+           redirect "/detailfragen"
+        end
+    end
+    session["answer"] = 0
     if session["done"]
         redirect "/ende"
     end
@@ -73,6 +89,7 @@ get "/frage" do
 end
 
 get "/detailfragen" do
+        session["answer"] = 1
       if session["done"]
         redirect "/ende"
     end
@@ -83,7 +100,8 @@ end
 get "/reset" do
     session["watched"] = nil
     session["group"] = nil
-    session["done"] = false;
+    session["done"] = false
+    session["answer"] = nil
     redirect "/"
 end
 
